@@ -1,0 +1,20 @@
+#compdef planter
+#autoload
+
+_planter() {
+  files=(~/.planter/*)
+  names=()
+  index=1
+
+  for file in $files; do
+    item=$file:t
+    if [[ $item == (*.tpl) ]]; then
+      names[$index]=$item[(ws:.:)1]
+      ((index++))
+    fi
+  done
+
+  compadd -a names
+}
+
+_planter "$@"
